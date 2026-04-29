@@ -5,12 +5,14 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
+    initUrgenceBar();
     initNavigation();
     initHeaderScroll();
     initSmoothScroll();
     initInfiniteCarousel();
     initModal();
     initForms();
+    initFaqAccordion();
     initAnimations();
 });
 
@@ -121,31 +123,93 @@ function initSmoothScroll() {
 }
 
 /**
- * Infinite Carousel for Testimonials
- * Auto-scrolling, pauses on hover
+ * S9 — Navigable testimonials carousel with arrows, dots, swipe, and autoplay
  */
 function initInfiniteCarousel() {
     const track = document.getElementById('carousel-track');
-    
+    const prevBtn = document.getElementById('avis-prev');
+    const nextBtn = document.getElementById('avis-next');
+    const dotsContainer = document.getElementById('avis-dots');
+
     if (!track) return;
-    
-    // Pause animation on hover
-    track.addEventListener('mouseenter', () => {
-        track.style.animationPlayState = 'paused';
-    });
-    
-    track.addEventListener('mouseleave', () => {
-        track.style.animationPlayState = 'running';
-    });
-    
-    // Touch support for mobile
-    track.addEventListener('touchstart', () => {
-        track.style.animationPlayState = 'paused';
+
+    const cards = Array.from(track.querySelectorAll('.temoignage-card'));
+    if (!cards.length) return;
+
+    let current = 0;
+    let autoplayTimer = null;
+
+    function visibleCount() {
+        return window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+    }
+
+    function totalSlides() {
+        return Math.max(1, cards.length - visibleCount() + 1);
+    }
+
+    function buildDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides(); i++) {
+            const dot = document.createElement('button');
+            dot.className = 'avis-dot' + (i === current ? ' active' : '');
+            dot.setAttribute('aria-label', `Avis ${i + 1}`);
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        dotsContainer.querySelectorAll('.avis-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === current);
+        });
+    }
+
+    function goTo(index) {
+        current = Math.max(0, Math.min(index, totalSlides() - 1));
+        const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginRight || 0);
+        track.style.transform = `translateX(-${current * cardWidth}px)`;
+        updateDots();
+    }
+
+    function next() { goTo(current === totalSlides() - 1 ? 0 : current + 1); }
+    function prev() { goTo(current === 0 ? totalSlides() - 1 : current - 1); }
+
+    function startAutoplay() {
+        autoplayTimer = setInterval(next, 4000);
+    }
+    function stopAutoplay() {
+        clearInterval(autoplayTimer);
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { stopAutoplay(); prev(); startAutoplay(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { stopAutoplay(); next(); startAutoplay(); });
+
+    // Swipe support
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) { stopAutoplay(); diff > 0 ? next() : prev(); startAutoplay(); }
     }, { passive: true });
-    
-    track.addEventListener('touchend', () => {
-        track.style.animationPlayState = 'running';
-    });
+
+    // Pause on hover
+    track.addEventListener('mouseenter', stopAutoplay);
+    track.addEventListener('mouseleave', startAutoplay);
+
+    // Re-init on resize
+    window.addEventListener('resize', () => {
+        buildDots();
+        goTo(Math.min(current, totalSlides() - 1));
+    }, { passive: true });
+
+    // Init
+    track.style.transition = 'transform 0.4s ease';
+    track.style.animation = 'none';
+    buildDots();
+    goTo(0);
+    startAutoplay();
 }
 
 /**
@@ -193,43 +257,133 @@ function initModal() {
 }
 
 /**
+ * French phone validation — accepts 06/07 mobile and 01-09 landlines
+ */
+function isValidFrenchPhone(value) {
+    const digits = value.replace(/\D/g, '');
+    return /^(0[1-9])(\d{8})$/.test(digits);
+}
+
+/**
  * Form Handling
  */
 function initForms() {
-    const forms = document.querySelectorAll('form');
-    
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+    // Diagnostic micro-forms (hero + modal) — inline confirmation
+    const diagForms = [
+        {
+            formId: 'diagnostic-form',
+            phoneId: 'diag-phone',
+            phoneErrorId: 'diag-phone-error',
+            prenomId: 'diag-prenom',
+            confirmationId: 'diag-confirmation',
+            confirmationMsgId: 'diag-confirmation-msg',
+        },
+        {
+            formId: 'modal-diagnostic-form',
+            phoneId: 'modal-phone',
+            phoneErrorId: 'modal-phone-error',
+            prenomId: 'modal-prenom',
+            confirmationId: 'modal-confirmation',
+            confirmationMsgId: 'modal-confirmation-msg',
+        },
+    ];
+
+    diagForms.forEach(({ formId, phoneId, phoneErrorId, prenomId, confirmationId, confirmationMsgId }) => {
+        const form = document.getElementById(formId);
+        if (!form) return;
+
+        const phoneInput = document.getElementById(phoneId);
+        const phoneError = document.getElementById(phoneErrorId);
+
+        // Real-time phone validation
+        if (phoneInput && phoneError) {
+            phoneInput.addEventListener('blur', () => {
+                if (phoneInput.value && !isValidFrenchPhone(phoneInput.value)) {
+                    phoneError.textContent = 'Numéro invalide — format attendu : 06 ou 07 XX XX XX XX';
+                } else {
+                    phoneError.textContent = '';
+                }
+            });
+            phoneInput.addEventListener('input', () => {
+                if (phoneError.textContent) phoneError.textContent = '';
+            });
+        }
+
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            // Simulate form submission
+
+            // Phone validation before submit
+            if (phoneInput && !isValidFrenchPhone(phoneInput.value)) {
+                phoneError.textContent = 'Numéro invalide — format attendu : 06 ou 07 XX XX XX XX';
+                phoneInput.focus();
+                return;
+            }
+
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi…';
             submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                // Show success message
-                showNotification('Votre demande a été envoyée avec succès ! Nous vous contacterons très bientôt.', 'success');
-                
-                // Reset form
-                form.reset();
-                
-                // Close modal if open
-                const modal = document.getElementById('diagnostic-modal');
-                if (modal && modal.classList.contains('active')) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
+
+            try {
+                const data = new FormData(form);
+                const response = await fetch(form.action, { method: 'POST', body: data });
+                const result = await response.json();
+
+                if (result.success) {
+                    const prenom = document.getElementById(prenomId)?.value?.trim() || '';
+                    const msg = prenom
+                        ? `Merci ${prenom} ! Notre expert vous rappelle sous 2h pour organiser votre diagnostic gratuit en Île-de-France.`
+                        : 'Merci ! Notre expert vous rappelle sous 2h pour organiser votre diagnostic gratuit en Île-de-France.';
+
+                    form.style.display = 'none';
+                    const confirmation = document.getElementById(confirmationId);
+                    const confirmationMsg = document.getElementById(confirmationMsgId);
+                    if (confirmation && confirmationMsg) {
+                        confirmationMsg.textContent = msg;
+                        confirmation.style.display = 'block';
+                    }
+                } else {
+                    showNotification('Une erreur est survenue. Appelez-nous directement au 07 68 84 13 24.', 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
                 }
-                
-                // Reset button
+            } catch {
+                showNotification('Une erreur est survenue. Appelez-nous directement au 07 68 84 13 24.', 'error');
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
-            }, 1500);
+            }
         });
     });
+
+    // Contact form — standard notification
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            submitBtn.disabled = true;
+
+            try {
+                const data = new FormData(contactForm);
+                const response = await fetch(contactForm.action, { method: 'POST', body: data });
+                const result = await response.json();
+
+                if (result.success) {
+                    showNotification('Votre demande a été envoyée ! Nous vous contacterons très bientôt.', 'success');
+                    contactForm.reset();
+                } else {
+                    showNotification('Une erreur est survenue. Veuillez réessayer ou nous appeler.', 'error');
+                }
+            } catch {
+                showNotification('Une erreur est survenue. Veuillez réessayer ou nous appeler.', 'error');
+            }
+
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+    }
 }
 
 /**
@@ -391,6 +545,71 @@ function initActiveSectionDetection() {
 
 // Initialize active section detection
 document.addEventListener('DOMContentLoaded', initActiveSectionDetection);
+
+/**
+ * S11 — Urgence bar dismiss
+ */
+function initUrgenceBar() {
+    const bar = document.getElementById('urgence-bar');
+    const closeBtn = document.getElementById('urgence-bar-close');
+    if (!bar || !closeBtn) return;
+
+    // Remember dismiss across page session
+    if (sessionStorage.getItem('urgence-dismissed')) {
+        bar.style.display = 'none';
+        return;
+    }
+
+    // Push navbar below the bar
+    document.body.classList.add('has-urgence-bar');
+
+    closeBtn.addEventListener('click', () => {
+        bar.style.opacity = '0';
+        bar.style.transform = 'translateY(-100%)';
+        document.body.classList.remove('has-urgence-bar');
+        setTimeout(() => { bar.style.display = 'none'; }, 300);
+        sessionStorage.setItem('urgence-dismissed', '1');
+    });
+}
+
+/**
+ * S12 — FAQ accordion
+ */
+function initFaqAccordion() {
+    const items = document.querySelectorAll('.faq-item');
+    if (!items.length) return;
+
+    items.forEach(item => {
+        const btn = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        if (!btn || !answer) return;
+
+        // Set initial heights
+        if (item.classList.contains('active')) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+            answer.style.maxHeight = '0';
+        }
+
+        btn.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all
+            items.forEach(i => {
+                i.classList.remove('active');
+                i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                i.querySelector('.faq-answer').style.maxHeight = '0';
+            });
+
+            // Open clicked if it was closed
+            if (!isActive) {
+                item.classList.add('active');
+                btn.setAttribute('aria-expanded', 'true');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+}
 
 /**
  * Phone number formatting

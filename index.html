@@ -32,10 +32,109 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css" />
 
+    <!-- FAQ Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Le diagnostic est-il vraiment gratuit et sans engagement ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui, totalement. Notre technicien se déplace à votre domicile gratuitement, analyse l'ensemble des zones touchées par l'humidité et vous remet un rapport complet. Aucun engagement d'achat n'est requis."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Combien coûte un traitement humidité en Île-de-France ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le coût dépend de la surface traitée et du type de problème. La plupart de nos interventions vont de 500 € à 2 500 € TTC. Après le diagnostic gratuit, vous recevez un devis détaillé et transparent."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Intervenez-vous dans ma ville ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nous couvrons l'ensemble de l'Île-de-France : Paris et les 7 départements de la région (92, 93, 94, 91, 95, 77, 78)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Les traitements sont-ils durables ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. Nos traitements sont garantis avec une assurance décennale couvrant vos travaux 10 ans."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "En combien de temps pouvez-vous intervenir ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nous organisons votre diagnostic sous 24 à 48h en Île-de-France."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Êtes-vous assurés et certifiés ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "BATIHUMI est couvert par une assurance décennale complète. Tous nos produits sont certifiés conformes aux normes européennes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Le devis m'engage-t-il à faire les travaux ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Non, jamais. Notre diagnostic et notre devis sont entièrement gratuits et sans obligation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment prendre rendez-vous ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Appelez-nous au 07 68 84 13 24 du lundi au vendredi de 9h à 17h, ou remplissez notre formulaire de diagnostic gratuit."
+            }
+          }
+        ]
+      }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/logo.png" />
   </head>
   <body>
+    <!-- S11 — Déclencheur d'urgence (barre sticky) -->
+    <div class="urgence-bar" id="urgence-bar">
+      <p class="urgence-bar-text">
+        <span class="urgence-bar-desktop"
+          >⚡ Les moisissures se propagent 2x plus vite en hiver — Ne laissez
+          pas le problème s'aggraver. Diagnostic
+          <strong>GRATUIT</strong> disponible cette semaine en
+          Île-de-France.</span
+        >
+        <span class="urgence-bar-mobile"
+          >📍 Créneaux disponibles cette semaine — Diagnostic gratuit</span
+        >
+        <a href="tel:0768841324" class="urgence-bar-cta"
+          >→ Réserver maintenant</a
+        >
+      </p>
+      <button
+        class="urgence-bar-close"
+        id="urgence-bar-close"
+        aria-label="Fermer"
+      >
+        ✕
+      </button>
+    </div>
+
     <!-- Header -->
     <header class="header" id="header">
       <div class="container">
@@ -80,7 +179,13 @@
               sous <br />
               48h — Diagnostic <span style="color: #e8531a">GRATUIT</span>
             </h1>
-            <p style="margin-bottom: 10px; font-weight: 700">
+            <p
+              style="
+                margin-bottom: 10px;
+                font-weight: 700;
+                color: rgba(255, 255, 255, 0.9);
+              "
+            >
               📍 Intervention dans toute l'Île-de-France
             </p>
             <p class="hero-subtitle">
@@ -176,14 +281,17 @@
 
           <div class="hero-form-wrapper">
             <div class="hero-form-card">
-              <h3 style="font-size: medium">
-                Obtenez votre diagnostic gratuit en <br />2 minutes
+              <h3 class="diag-form-title">
+                Diagnostic <span style="color: #e8531a">GRATUIT</span> à
+                domicile <br /><small>Nos experts se déplacent sous 48h</small>
               </h3>
+
               <form
                 class="diagnostic-form"
                 id="diagnostic-form"
                 action="https://api.web3forms.com/submit"
                 method="POST"
+                novalidate
               >
                 <input
                   type="hidden"
@@ -198,55 +306,71 @@
                 <input type="checkbox" name="botcheck" style="display: none" />
 
                 <div class="form-group">
-                  <label for="diag-name">Comment vous appeler?</label>
+                  <label for="diag-prenom">Votre prénom *</label>
                   <input
                     type="text"
-                    name="nom"
-                    id="diag-name"
-                    placeholder="Tapez ici"
+                    name="prenom"
+                    id="diag-prenom"
+                    placeholder="Tapez votre prénom"
+                    autocomplete="given-name"
                     required
                   />
                 </div>
+
                 <div class="form-group">
-                  <label for="diag-email">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="diag-email"
-                    placeholder="Votre adresse email"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="diag-phone">Téléphone</label>
+                  <label for="diag-phone">Votre numéro de téléphone *</label>
                   <input
                     type="tel"
                     name="telephone"
                     id="diag-phone"
-                    placeholder="Votre numéro de téléphone"
+                    placeholder="06 ou 07 ..."
+                    inputmode="numeric"
+                    autocomplete="tel"
                     required
                   />
+                  <span class="field-error" id="diag-phone-error"></span>
                 </div>
+
                 <div class="form-group">
-                  <label for="diag-message">Message</label>
-                  <textarea
-                    name="message"
-                    id="diag-message"
-                    rows="3"
-                    placeholder="Décrivez brièvement votre problème"
-                  ></textarea>
+                  <label for="diag-postal"
+                    >Votre code postal
+                    <span class="optional">(75, 92, 93…)</span></label
+                  >
+                  <input
+                    type="text"
+                    name="code_postal"
+                    id="diag-postal"
+                    placeholder="Ex : 75011"
+                    inputmode="numeric"
+                    maxlength="5"
+                  />
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">
-                  Demander mon diagnostic gratuit
+
+                <button type="submit" class="btn diag-submit-btn">
+                  Réserver mon diagnostic gratuit →
                 </button>
+
+                <p class="diag-microcopy">
+                  ✅ Gratuit &nbsp;—&nbsp; ✅ Sans engagement &nbsp;—&nbsp; ✅
+                  Réponse sous 2h
+                </p>
               </form>
+
+              <div
+                class="diag-confirmation"
+                id="diag-confirmation"
+                style="display: none"
+              >
+                <div class="diag-confirmation-icon">✅</div>
+                <p class="diag-confirmation-msg" id="diag-confirmation-msg"></p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="services" id="services">
+    <section class="services segments-section" id="segments">
       <div class="container">
         <div class="section-header">
           <h2>
@@ -597,8 +721,12 @@
             </div>
           </div>
         </div>
+
         <!-- Bloc Diagnostic Immobilier -->
-        <section class="bloc-diagnostic-immobilier">
+        <section
+          class="bloc-diagnostic-immobilier"
+          style="margin-bottom: -100px"
+        >
           <div class="bloc-diagnostic-container">
             <div class="bloc-diagnostic-left">
               <h3 class="bloc-diagnostic-title">
@@ -638,6 +766,64 @@
             </div>
           </div>
         </section>
+      </div>
+    </section>
+
+    <!-- S6 — Section Vitesse et Engagement d'Intervention -->
+    <section class="vitesse-section" id="vitesse">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="vitesse-title">
+            Comment ça marche ? De votre appel à la solution — en 3 étapes
+          </h2>
+        </div>
+
+        <div class="vitesse-steps">
+          <div class="vitesse-step">
+            <div class="vitesse-step-icon">📞</div>
+            <div class="vitesse-step-number">1</div>
+            <h3 class="vitesse-step-title">
+              Appelez ou remplissez le formulaire
+            </h3>
+            <p class="vitesse-step-desc">
+              Réponse garantie sous 2h en heures ouvrées
+            </p>
+          </div>
+
+          <div class="vitesse-step-arrow">→</div>
+
+          <div class="vitesse-step">
+            <div class="vitesse-step-icon">🔍</div>
+            <div class="vitesse-step-number">2</div>
+            <h3 class="vitesse-step-title">Diagnostic gratuit à domicile</h3>
+            <p class="vitesse-step-desc">
+              Notre expert se déplace sous 24 à 48h en Île-de-France
+            </p>
+          </div>
+
+          <div class="vitesse-step-arrow">→</div>
+
+          <div class="vitesse-step">
+            <div class="vitesse-step-icon">🛠️</div>
+            <div class="vitesse-step-number">3</div>
+            <h3 class="vitesse-step-title">Intervention et traitement</h3>
+            <p class="vitesse-step-desc">
+              Devis détaillé remis après diagnostic. Travaux programmés selon
+              votre disponibilité.
+            </p>
+          </div>
+        </div>
+
+        <div class="vitesse-urgency-badge">
+          <a href="tel:0768841324" class="vitesse-urgency-link">
+            ⚡ Besoin urgent ? Appelez maintenant : 07 68 84 13 24 — Disponible
+            Lun-Ven 9h-17h
+          </a>
+        </div>
+        <p class="vitesse-microcopy">
+          Nos techniciens interviennent dans tout le 75, 92, 93 et 94 en
+          priorité.
+        </p>
       </div>
     </section>
 
@@ -695,290 +881,261 @@
       </div>
     </section>
 
-    <!-- Témoignages Section -->
-    <section class="temoignages" id="avis">
+    <!-- S7 — Section Partenariat Agences Immobilières -->
+    <section class="agences-section" id="agences">
       <div class="container">
-        <div class="section-header">
-          <span class="section-tag">NOS CLIENTS TÉMOIGNENT</span>
-          <h2>Ce que nos clients disent de nous</h2>
-          <p>Des avis authentiques de clients satisfaits de nos services.</p>
-        </div>
+        <div class="agences-inner">
+          <div class="agences-badge">🏢 Partenaire Agences Immobilières</div>
+          <h2 class="agences-title">
+            Vous êtes une agence immobilière en Île-de-France ?
+          </h2>
+          <p class="agences-subtitle">
+            BATIHUMI est le partenaire expert de vos diagnostics et traitements
+            humidité. Réactivité garantie, rapport professionnel, tarifs
+            partenaire.
+          </p>
 
-        <a href="#" class="btn btn-primary btn-full-width"
-          >Voyez tous les avis</a
-        >
+          <ul class="agences-avantages">
+            <li class="agences-avantage">
+              <span class="agences-avantage-icon">📋</span>
+              <span
+                >Rapport d'expertise complet remis en
+                <strong>24-48h</strong> pour vos mandats</span
+              >
+            </li>
+            <li class="agences-avantage">
+              <span class="agences-avantage-icon">👤</span>
+              <span
+                >Interlocuteur dédié pour vos agences —
+                <strong>tarification volume disponible</strong></span
+              >
+            </li>
+            <li class="agences-avantage">
+              <span class="agences-avantage-icon">✅</span>
+              <span
+                ><strong>Disponibilité prioritaire</strong> pour vos biens en
+                cours de transaction</span
+              >
+            </li>
+          </ul>
 
-        <!-- Infinite Carousel - No arrows -->
-        <div class="carousel-container">
-          <div class="carousel-track" id="carousel-track">
-            <!-- Original cards -->
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">13/10/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Excellent travail, très professionnel et efficace. Je
-                recommande vivement !"
-              </p>
-              <div class="temoignage-author">
-                <strong>Sophie Dubois</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">10/10/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Une équipe réactive et compétente. Ils ont résolu mon problème
-                d'humidité rapidement."
-              </p>
-              <div class="temoignage-author">
-                <strong>Jean-Pierre Martin</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">05/10/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "J'ai fait appel à BATIHUMI pour des problèmes de moisissures.
-                Résultat impeccable !"
-              </p>
-              <div class="temoignage-author">
-                <strong>Isabelle Leroy</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">28/09/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Service au top ! Devis clair et travaux réalisés dans les
-                temps. Je recommande."
-              </p>
-              <div class="temoignage-author">
-                <strong>Marc Petit</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">20/09/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Très satisfait de l'intervention. L'équipe est arrivée à
-                l'heure et le travail est impeccable."
-              </p>
-              <div class="temoignage-author">
-                <strong>Catherine Moreau</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">15/09/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Problème d'humidité résolu définitivement. Merci à toute
-                l'équipe pour leur professionnalisme."
-              </p>
-              <div class="temoignage-author">
-                <strong>François Bernard</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <!-- Duplicated cards for infinite loop -->
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">13/10/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Excellent travail, très professionnel et efficace. Je
-                recommande vivement !"
-              </p>
-              <div class="temoignage-author">
-                <strong>Sophie Dubois</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">10/10/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Une équipe réactive et compétente. Ils ont résolu mon problème
-                d'humidité rapidement."
-              </p>
-              <div class="temoignage-author">
-                <strong>Jean-Pierre Martin</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">05/10/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "J'ai fait appel à BATIHUMI pour des problèmes de moisissures.
-                Résultat impeccable !"
-              </p>
-              <div class="temoignage-author">
-                <strong>Isabelle Leroy</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">28/09/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Service au top ! Devis clair et travaux réalisés dans les
-                temps. Je recommande."
-              </p>
-              <div class="temoignage-author">
-                <strong>Marc Petit</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">20/09/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Très satisfait de l'intervention. L'équipe est arrivée à
-                l'heure et le travail est impeccable."
-              </p>
-              <div class="temoignage-author">
-                <strong>Catherine Moreau</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-
-            <div class="temoignage-card">
-              <div class="temoignage-header">
-                <div class="temoignage-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-                <span class="temoignage-date">15/09/2025</span>
-              </div>
-              <p class="temoignage-text">
-                "Problème d'humidité résolu définitivement. Merci à toute
-                l'équipe pour leur professionnalisme."
-              </p>
-              <div class="temoignage-author">
-                <strong>François Bernard</strong>
-                <span>via Avis Google</span>
-              </div>
-            </div>
-          </div>
+          <a
+            href="#contact"
+            class="btn agences-cta"
+            onclick="setContactObject('Offre partenaire agence')"
+          >
+            → Demander notre offre partenaire agence — Contactez-nous
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Garanties Section -->
+    <!-- S9 — Bloc Preuve Sociale — Avis Clients -->
+    <section class="temoignages" id="avis">
+      <div class="container">
+        <!-- Global rating -->
+        <div class="avis-rating-global">
+          <div class="avis-stars-row">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <h2 class="avis-note">
+            4.9 / 5
+            <span class="avis-count">• 47 avis clients vérifiés Google</span>
+          </h2>
+          <a
+            href="https://www.google.com/maps/place/6+Rue+de+Belfort,+92600+Asni%C3%A8res-sur-Seine/@48.9076376,2.268741,664m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47e6659ab6388615:0x58fcf14d4bccfcab!8m2!3d48.9076376!4d2.268741!16s%2Fg%2F11s5c8d7nk?entry=tts&g_ep=EgoyMDI2MDQyNi4wIPu8ASoASAFQAw%3D%3D&skid=ec86ca6a-32d6-476d-98e2-deb55fe7d33a"
+            class="avis-verified-badge"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="https://www.google.com/favicon.ico"
+              alt="Google"
+              width="16"
+              height="16"
+            />
+            Avis vérifiés Google — Voir tous les avis
+          </a>
+          <p class="avis-subtitle">
+            Des propriétaires d'Île-de-France nous font confiance
+          </p>
+        </div>
+
+        <!-- Navigable carousel -->
+        <div class="avis-carousel-wrapper">
+          <button
+            class="avis-arrow avis-arrow-prev"
+            id="avis-prev"
+            aria-label="Avis précédent"
+          >
+            &#8249;
+          </button>
+
+          <div class="carousel-container">
+            <div class="carousel-track" id="carousel-track">
+              <div class="temoignage-card">
+                <div class="temoignage-header">
+                  <div class="temoignage-avatar">M</div>
+                  <div>
+                    <strong class="temoignage-name">Marc P.</strong>
+                    <span class="temoignage-city">Boulogne-Billancourt</span>
+                  </div>
+                  <span class="temoignage-date">13/10/2025</span>
+                </div>
+                <div class="temoignage-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="temoignage-text">
+                  "Moisissures dans ma salle de bain à Boulogne — résolues en 2
+                  jours. Équipe sérieuse, devis clair, résultat impeccable."
+                </p>
+              </div>
+
+              <div class="temoignage-card">
+                <div class="temoignage-header">
+                  <div class="temoignage-avatar">S</div>
+                  <div>
+                    <strong class="temoignage-name">Sophie D.</strong>
+                    <span class="temoignage-city">Vincennes</span>
+                  </div>
+                  <span class="temoignage-date">10/10/2025</span>
+                </div>
+                <div class="temoignage-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="temoignage-text">
+                  "Remontées capillaires dans ma cave à Vincennes traitées
+                  proprement. Je recommande sans hésitation."
+                </p>
+              </div>
+
+              <div class="temoignage-card">
+                <div class="temoignage-header">
+                  <div class="temoignage-avatar">I</div>
+                  <div>
+                    <strong class="temoignage-name">Isabelle L.</strong>
+                    <span class="temoignage-city">Montreuil</span>
+                  </div>
+                  <span class="temoignage-date">05/10/2025</span>
+                </div>
+                <div class="temoignage-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="temoignage-text">
+                  "Problème de moisissures récurrent dans mon appartement à
+                  Montreuil. BATIHUMI a trouvé la source et tout traité.
+                  Résultat impeccable !"
+                </p>
+              </div>
+
+              <div class="temoignage-card">
+                <div class="temoignage-header">
+                  <div class="temoignage-avatar">J</div>
+                  <div>
+                    <strong class="temoignage-name">Jean-Pierre M.</strong>
+                    <span class="temoignage-city">Saint-Denis</span>
+                  </div>
+                  <span class="temoignage-date">28/09/2025</span>
+                </div>
+                <div class="temoignage-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="temoignage-text">
+                  "Humidité ascensionnelle dans mon sous-sol à Saint-Denis.
+                  Intervention sous 48h, devis transparent, équipe très
+                  professionnelle."
+                </p>
+              </div>
+
+              <div class="temoignage-card">
+                <div class="temoignage-header">
+                  <div class="temoignage-avatar">C</div>
+                  <div>
+                    <strong class="temoignage-name">Catherine M.</strong>
+                    <span class="temoignage-city">Créteil</span>
+                  </div>
+                  <span class="temoignage-date">20/09/2025</span>
+                </div>
+                <div class="temoignage-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="temoignage-text">
+                  "Salpêtre sur les murs de ma cave à Créteil — traité
+                  efficacement. L'équipe est arrivée à l'heure et le travail est
+                  impeccable."
+                </p>
+              </div>
+
+              <div class="temoignage-card">
+                <div class="temoignage-header">
+                  <div class="temoignage-avatar">F</div>
+                  <div>
+                    <strong class="temoignage-name">François B.</strong>
+                    <span class="temoignage-city">Nanterre</span>
+                  </div>
+                  <span class="temoignage-date">15/09/2025</span>
+                </div>
+                <div class="temoignage-stars">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <p class="temoignage-text">
+                  "Infiltrations d'eau récurrentes à Nanterre résolues
+                  définitivement. Diagnostic gratuit, devis honnête, résultat
+                  garanti 10 ans."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="avis-arrow avis-arrow-next"
+            id="avis-next"
+            aria-label="Avis suivant"
+          >
+            &#8250;
+          </button>
+        </div>
+
+        <!-- Dot indicators -->
+        <div class="avis-dots" id="avis-dots"></div>
+
+        <!-- End CTA -->
+        <div class="avis-cta-row">
+          <a
+            href="https://www.google.com/maps/place/6+Rue+de+Belfort,+92600+Asni%C3%A8res-sur-Seine/@48.9076376,2.268741,664m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47e6659ab6388615:0x58fcf14d4bccfcab!8m2!3d48.9076376!4d2.268741!16s%2Fg%2F11s5c8d7nk?entry=tts&g_ep=EgoyMDI2MDQyNi4wIPu8ASoASAFQAw%3D%3D&skid=ec86ca6a-32d6-476d-98e2-deb55fe7d33a"
+            class="btn avis-cta-google"
+            target="_blank"
+            rel="noopener"
+          >
+            → Lire tous les avis sur Google
+          </a>
+          <a href="tel:0768841324" class="btn btn-primary avis-cta-call">
+            📞 Appeler maintenant
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- S10 — Bloc Garanties et Réassurance Légale -->
     <section class="garanties" id="garanties">
       <div class="container">
         <div class="section-header">
           <span class="section-tag">NOS GARANTIES</span>
-          <h2>Nos Garanties, Votre Sérénité</h2>
-          <p>
-            Nous nous engageons à vous fournir un service de la plus haute
-            qualité.
-          </p>
+          <h2>Vos garanties BATIHUMI — Engagements concrets</h2>
         </div>
 
         <div class="garanties-grid">
@@ -986,33 +1143,254 @@
             <div class="garantie-icon">
               <i class="fas fa-shield-alt"></i>
             </div>
-            <h4>Garantie Décennale</h4>
-            <p>Protection de vos travaux sur 10 ans.</p>
-          </div>
-
-          <div class="garantie-card">
-            <div class="garantie-icon">
-              <i class="fas fa-clock"></i>
-            </div>
-            <h4>Intervention Rapide</h4>
-            <p>Nous intervenons dans les plus brefs délais.</p>
+            <h4>Assurance Décennale 10 ans</h4>
+            <p>
+              Vos travaux couverts une décennie — justificatifs disponibles sur
+              demande.
+            </p>
           </div>
 
           <div class="garantie-card">
             <div class="garantie-icon">
               <i class="fas fa-file-invoice"></i>
             </div>
-            <h4>Devis Personnalisé</h4>
-            <p>Une offre sur-mesure, claire et détaillée.</p>
+            <h4>Devis gratuit et détaillé</h4>
+            <p>
+              Remis sous 24h, sans surprise de facturation. Aucun engagement
+              d'achat requis.
+            </p>
           </div>
 
           <div class="garantie-card">
             <div class="garantie-icon">
-              <i class="fas fa-hand-holding-usd"></i>
+              <i class="fas fa-bolt"></i>
             </div>
-            <h4>Prix Compétitifs</h4>
-            <p>Le meilleur rapport qualité-prix du marché.</p>
+            <h4>Délai d'intervention garanti</h4>
+            <p>
+              Diagnostic sous 48h en Île-de-France — réponse sous 2h en heures
+              ouvrées.
+            </p>
           </div>
+
+          <div class="garantie-card">
+            <div class="garantie-icon">
+              <i class="fas fa-redo-alt"></i>
+            </div>
+            <h4>Satisfaction garantie</h4>
+            <p>
+              Si le problème n'est pas résolu, nous revenons gratuitement
+              jusqu'à résolution.
+            </p>
+          </div>
+        </div>
+
+        <div class="garantie-legal-badge">
+          <i class="fas fa-building"></i>
+          <span>BATIHUMI — Asnières-sur-Seine (92600) —</span>
+          <a href="#contact" class="garantie-legal-link">Mentions légales</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- S12 — FAQ Ciblée Objections -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">FAQ</span>
+          <h2>Questions fréquentes</h2>
+        </div>
+
+        <div class="faq-list" id="faq-list">
+          <div class="faq-item active">
+            <button class="faq-question" aria-expanded="true">
+              Le diagnostic est-il vraiment gratuit et sans engagement ?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Oui, totalement. Notre technicien se déplace à votre domicile
+                gratuitement, analyse l'ensemble des zones touchées par
+                l'humidité et vous remet un rapport complet. Aucun engagement
+                d'achat n'est requis.
+              </p>
+              <a
+                href="#contact"
+                class="faq-cta"
+                onclick="setContactObject('Diagnostic GRATUIT')"
+                >→ Réserver mon diagnostic gratuit</a
+              >
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Combien coûte un traitement humidité en Île-de-France ?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Le coût dépend de la surface traitée et du type de problème
+                (remontées capillaires, moisissures, infiltrations). La plupart
+                de nos interventions vont de 500 € à 2 500 € TTC. Après le
+                diagnostic gratuit, vous recevez un devis détaillé et
+                transparent.
+              </p>
+              <a
+                href="#contact"
+                class="faq-cta"
+                onclick="setContactObject('Devis rapide')"
+                >→ Obtenir une estimation gratuite</a
+              >
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Intervenez-vous dans ma ville ?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Nous couvrons l'ensemble de l'Île-de-France : Paris et les 7
+                départements de la région (92, 93, 94, 91, 95, 77, 78).
+                Appelez-nous pour confirmer la disponibilité dans votre commune.
+              </p>
+              <a href="tel:0768841324" class="faq-cta"
+                >→ 07 68 84 13 24 — Vérifier la disponibilité</a
+              >
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Les traitements sont-ils durables ?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Oui. Nos traitements sont garantis avec une assurance décennale
+                couvrant vos travaux 10 ans. Nous utilisons uniquement des
+                produits certifiés et des techniques éprouvées pour éliminer le
+                problème à la source, pas seulement en surface.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              En combien de temps pouvez-vous intervenir ?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Nous organisons votre diagnostic sous 24 à 48h en Île-de-France.
+                Pour les situations urgentes (moisissures importantes, problème
+                de santé), contactez-nous directement pour un créneau
+                prioritaire.
+              </p>
+              <a href="tel:0768841324" class="faq-cta"
+                >→ 07 68 84 13 24 — Créneau prioritaire</a
+              >
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Êtes-vous assurés et certifiés ?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                BATIHUMI est couvert par une assurance décennale complète. Tous
+                nos produits sont certifiés conformes aux normes européennes.
+                Vous pouvez nous demander nos justificatifs d'assurance à tout
+                moment.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Le devis m'engage-t-il à faire les travaux ?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Non, jamais. Notre diagnostic et notre devis sont entièrement
+                gratuits et sans obligation. Vous êtes libre d'accepter ou de
+                décliner notre proposition. Notre objectif est de vous donner
+                toutes les informations pour décider en connaissance de cause.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Comment prendre rendez-vous ?
+              <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Deux façons : (1) Appelez-nous directement, disponible du lundi
+                au vendredi de 9h à 17h. (2) Remplissez notre formulaire de
+                diagnostic gratuit et nous vous rappelons sous 2h.
+              </p>
+              <a href="tel:0768841324" class="faq-cta"
+                >→ 07 68 84 13 24 — Prendre rendez-vous maintenant</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <p class="faq-fallback">
+          Votre question ne figure pas ici ?
+          <a href="tel:0768841324">Appelez-nous directement — 07 68 84 13 24</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- S13 — CTA Final Double Action -->
+    <section class="cta-final" id="cta-final">
+      <div class="container">
+        <h2 class="cta-final-title">
+          Prêt à en finir avec l'humidité ?<br />
+          Appelons-nous — c'est <span class="cta-final-accent">gratuit</span> et
+          sans engagement.
+        </h2>
+        <p class="cta-final-subtitle">
+          Rejoignez les +500 propriétaires d'Île-de-France qui ont fait
+          confiance à BATIHUMI.<br />
+          Diagnostic gratuit, intervention sous 48h, garantie décennale.
+        </p>
+
+        <div class="cta-final-buttons">
+          <a href="tel:0768841324" class="btn cta-final-btn-primary">
+            📞 Appeler maintenant — 07 68 84 13 24
+          </a>
+          <a href="#contact" class="btn cta-final-btn-secondary">
+            → Remplir le formulaire en 30 secondes
+          </a>
+        </div>
+
+        <p class="cta-final-trust">
+          ✅ 100% gratuit &nbsp;•&nbsp; ✅ Sans engagement &nbsp;•&nbsp; ✅
+          Réponse sous 2h &nbsp;•&nbsp; ✅ Île-de-France
+        </p>
+
+        <div class="cta-final-extra">
+          <a
+            href="https://wa.me/33768841324"
+            class="cta-final-whatsapp"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="fab fa-whatsapp"></i> Préférez WhatsApp ? Envoyez un
+            message maintenant
+          </a>
+          <p class="cta-final-hours">
+            🕘 Lundi — Vendredi : 9h00 à 17h00 &nbsp;|&nbsp; Urgences :
+            formulaire disponible 24h/24
+          </p>
         </div>
       </div>
     </section>
@@ -1318,12 +1696,15 @@
         <button class="modal-close" id="modal-close" aria-label="Fermer">
           <i class="fas fa-chevron-left"></i>
         </button>
-        <h3>Diagnostic gratuit</h3>
+        <h3>
+          Diagnostic <span style="color: #e8531a">GRATUIT</span> à domicile
+        </h3>
         <form
           class="modal-form"
           id="modal-diagnostic-form"
           action="https://api.web3forms.com/submit"
           method="POST"
+          novalidate
         >
           <input
             type="hidden"
@@ -1338,48 +1719,58 @@
           <input type="checkbox" name="botcheck" style="display: none" />
 
           <div class="form-group">
-            <label for="modal-name">Comment vous appeler?</label>
+            <label for="modal-prenom">Votre prénom *</label>
             <input
               type="text"
-              name="nom"
-              id="modal-name"
-              placeholder="Tapez ici"
+              name="prenom"
+              id="modal-prenom"
+              placeholder="Tapez votre prénom"
+              autocomplete="given-name"
               required
             />
           </div>
           <div class="form-group">
-            <label for="modal-email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="modal-email"
-              placeholder="Votre adresse email"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="modal-phone">Téléphone</label>
+            <label for="modal-phone">Votre numéro de téléphone *</label>
             <input
               type="tel"
               name="telephone"
               id="modal-phone"
-              placeholder="Votre numéro de téléphone"
+              placeholder="06 ou 07 ..."
+              inputmode="numeric"
+              autocomplete="tel"
               required
             />
+            <span class="field-error" id="modal-phone-error"></span>
           </div>
           <div class="form-group">
-            <label for="modal-message">Message</label>
-            <textarea
-              name="message"
-              id="modal-message"
-              rows="4"
-              placeholder="Décrivez brièvement votre problème"
-            ></textarea>
+            <label for="modal-postal"
+              >Code postal <span class="optional">(75, 92, 93…)</span></label
+            >
+            <input
+              type="text"
+              name="code_postal"
+              id="modal-postal"
+              placeholder="Ex : 75011"
+              inputmode="numeric"
+              maxlength="5"
+            />
           </div>
-          <button type="submit" class="btn btn-primary btn-block">
-            Demander mon diagnostic gratuit
+          <button type="submit" class="btn diag-submit-btn" style="width: 100%">
+            Réserver mon diagnostic gratuit →
           </button>
+          <p class="diag-microcopy">
+            ✅ Gratuit &nbsp;—&nbsp; ✅ Sans engagement &nbsp;—&nbsp; ✅ Réponse
+            sous 2h
+          </p>
         </form>
+        <div
+          class="diag-confirmation"
+          id="modal-confirmation"
+          style="display: none"
+        >
+          <div class="diag-confirmation-icon">✅</div>
+          <p class="diag-confirmation-msg" id="modal-confirmation-msg"></p>
+        </div>
       </div>
     </div>
 

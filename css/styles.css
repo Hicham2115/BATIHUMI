@@ -1604,7 +1604,7 @@ section {
    FOOTER
    =================================== */
 .footer {
-  background-color: var(--footer-blue);
+  background-color: #1f3a5f;
   color: var(--white);
   padding: 4rem 0 0;
 }

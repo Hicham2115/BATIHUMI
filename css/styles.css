@@ -2040,6 +2040,8 @@ section {
   .hero-buttons .btn {
     width: 100%;
     justify-content: center;
+    font-size: 0.8rem;
+    padding: 0.6rem 0.85rem;
   }
 
   .hero-cta {
@@ -2763,12 +2765,22 @@ section {
   .urgence-mid-inner {
     flex-direction: column;
     text-align: center;
+    gap: 1.25rem;
+  }
+  .urgence-mid-fact {
+    font-size: 1rem;
+  }
+  .urgence-mid-sub {
+    font-size: 0.875rem;
   }
   .urgence-mid-cta {
     width: 100%;
     justify-content: center;
-    font-size: 1.05rem;
-    padding: 18px 24px;
+    font-size: 0.82rem;
+    padding: 14px 16px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
   }
 }
 

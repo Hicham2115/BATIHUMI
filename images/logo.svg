@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 60" width="50" height="60">
+  <!-- Water drop - main outline -->
+  <path d="M25 5 
+           C25 5, 8 25, 8 36 
+           C8 47, 15 55, 25 55 
+           C35 55, 42 47, 42 36 
+           C42 25, 25 5, 25 5 Z" 
+        fill="none" 
+        stroke="#5BC0EB" 
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+  
+  <!-- First inner curve (larger) -->
+  <path d="M20 18 
+           C20 18, 11 32, 11 39 
+           C11 45, 15 50, 22 52" 
+        fill="none" 
+        stroke="#5BC0EB" 
+        stroke-width="2.5" 
+        stroke-linecap="round"/>
+  
+  <!-- Second inner curve (smaller) -->
+  <path d="M22 27 
+           C22 27, 16 37, 16 42 
+           C16 47, 19 50, 24 51" 
+        fill="none" 
+        stroke="#5BC0EB" 
+        stroke-width="2" 
+        stroke-linecap="round"/>
+</svg>

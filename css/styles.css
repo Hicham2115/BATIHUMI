@@ -414,6 +414,10 @@
     width: 100%;
     text-align: center;
     padding: 1rem 0.5rem;
+    white-space: normal;
+  }
+  .idf-title {
+    font-size: 1.6rem;
   }
 }
 /* Trust strip (hero badges) styling */
@@ -668,6 +672,7 @@ body {
   background-color: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 img {
@@ -822,6 +827,12 @@ body.has-urgence-bar .header {
 
 body.has-urgence-bar .hero {
   padding-top: 164px; /* 120px original + 44px bar */
+}
+
+@media (max-width: 768px) {
+  body.has-urgence-bar .hero {
+    padding-top: 130px; /* 72px nav + 44px bar + 14px breathing room */
+  }
 }
 
 .header.scrolled {
@@ -1295,7 +1306,7 @@ section {
 }
 
 .before-after-item img {
-  width: 400px;
+  width: min(400px, 100%);
   height: 300px;
   object-fit: cover;
   border-radius: 12px;
@@ -1972,6 +1983,16 @@ section {
   .temoignage-card {
     flex: 0 0 320px;
   }
+
+  .bloc-diagnostic-container {
+    padding: 1.5rem;
+  }
+
+  .btn-diagnostic-cta {
+    white-space: normal;
+    text-align: center;
+    width: 100%;
+  }
 }
 
 /* ===================================
@@ -1994,6 +2015,12 @@ section {
   .hero-text h1 {
     font-size: 1.5rem;
   }
+
+  .btn {
+    white-space: normal;
+    text-align: center;
+  }
+
   .btn.btn-diagnostic-cta {
     font-size: 0.8rem;
   }
@@ -2007,6 +2034,17 @@ section {
 
   .hero-buttons {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-cta {
+    width: 100%;
+    justify-content: center;
   }
 
   .hero-badges {
@@ -2166,6 +2204,46 @@ section {
 
   .section-header h2 {
     font-size: 1.5rem;
+  }
+
+  .idf-badge {
+    width: auto;
+    min-width: 140px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    font-size: 13px;
+  }
+
+  .idf-cities-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+  }
+
+  .idf-city {
+    font-size: 0.875rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .idf-title {
+    font-size: 1.5rem;
+  }
+
+  .idf-subtitle {
+    font-size: 1rem;
+  }
+
+  .form-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .avis-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+
+  .bloc-diagnostic-list {
+    font-size: 0.9rem;
   }
 }
 

@@ -121,21 +121,55 @@
             >
 
             <div class="hero-badges">
-              <div class="badge">
-                ✅
-                <span>Assurance Décennale</span>
-              </div>
-              <div class="badge">
-                ⭐
-                <span> 4.9/5 (47 avis Google)</span>
-              </div>
-              <div class="badge">
-                ⭐
-                <span>Sous 48h</span>
-              </div>
-              <div class="badge">
-                ⭐
-                <span>Diagnostic Offert</span>
+              <div class="hero-badges-strip">
+                <ul class="hero-badges-list">
+                  <li class="hero-badge">
+                    <span class="hero-badge-icon">⭐</span>
+                    <div class="hero-badge-text">
+                      <span class="hero-badge-key">4.9/5</span>
+                      <span class="hero-badge-desc">47 avis Google</span>
+                    </div>
+                  </li>
+                  <li class="hero-badge">
+                    <span class="hero-badge-icon">🔒</span>
+                    <div class="hero-badge-text">
+                      <span class="hero-badge-key">10 ans</span>
+                      <span class="hero-badge-desc"
+                        >Assurance Décennale incluse</span
+                      >
+                    </div>
+                  </li>
+                  <li class="hero-badge">
+                    <span class="hero-badge-icon">⚡</span>
+                    <div class="hero-badge-text">
+                      <span class="hero-badge-key">48h</span>
+                      <span class="hero-badge-desc"
+                        >Intervention Île-de-France</span
+                      >
+                    </div>
+                  </li>
+                  <li class="hero-badge">
+                    <span class="hero-badge-icon">🏆</span>
+                    <div class="hero-badge-text">
+                      <span class="hero-badge-key">+500</span>
+                      <span class="hero-badge-desc">Chantiers réalisés</span>
+                    </div>
+                  </li>
+                  <li class="hero-badge">
+                    <span class="hero-badge-icon">🆓</span>
+                    <div class="hero-badge-text">
+                      <span class="hero-badge-key">Gratuit</span>
+                      <span class="hero-badge-desc"
+                        >Diagnostic sans engagement</span
+                      >
+                    </div>
+                  </li>
+                </ul>
+                <div class="hero-badges-link-wrapper">
+                  <a class="hero-badges-link" href="#avis" target="_blank"
+                    >Voir tous les avis</a
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -206,6 +240,110 @@
                   Demander mon diagnostic gratuit
                 </button>
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW Section -->
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2>
+            Qui êtes-vous ? Trouvez la solution adaptée à votre situation.
+          </h2>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card hover-orange">
+            <div class="service-image">
+              <img
+                src="images/tierra-mallorca-rgJ1J8SDEAY-unsplash.jpg"
+                alt="Diagnostic offert"
+              />
+            </div>
+            <div class="service-content">
+              <h3>🏠 Propriétaire / Locataire</h3>
+              <p>
+                J'ai un problème d'humidité, moisissures ou salpêtre à traiter.
+              </p>
+              <a
+                class="btn btn-primary"
+                style="margin-top: 10px"
+                href="#contact"
+                data-object="Diagnostic GRATUIT"
+                onclick="setContactObject('Diagnostic GRATUIT')"
+              >
+                Diagnostic GRATUIT
+              </a>
+            </div>
+          </div>
+
+          <div class="service-card hover-orange">
+            <div class="service-image">
+              <img
+                src="images/maria-ziegler-jJnZg7vBfMs-unsplash.jpg"
+                alt="Traitement humidité ascensionnelle"
+              />
+            </div>
+            <div class="service-content">
+              <h3>🔑 Vendeur ou Acheteur immobilier</h3>
+              <p>J'ai besoin d'un diagnostic avant transaction.</p>
+              <a
+                class="btn btn-primary"
+                style="margin-top: 10px"
+                href="#contact"
+                data-object="Devis rapide"
+                onclick="setContactObject('Devis rapide')"
+              >
+                Devis rapide
+              </a>
+            </div>
+          </div>
+
+          <div class="service-card hover-orange">
+            <div class="service-image">
+              <img
+                src="images/tierra-mallorca-NpTbVOkkom8-unsplash.jpg"
+                alt="Injection de résine"
+              />
+            </div>
+            <div class="service-content">
+              <h3>🏢 Agence immobilière</h3>
+              <p>Je cherche un partenaire expert pour mes mandats.</p>
+              <a
+                class="btn btn-primary"
+                style="margin-top: 10px"
+                href="#contact"
+                data-object="Partenariat"
+                onclick="setContactObject('Partenariat')"
+              >
+                Partenariat
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="service-card hover-orange"
+            style="background-color: #fff3ed"
+          >
+            <div class="service-image">
+              <img
+                src="images/jakub-zerdzicki-AW5QbIkgmzc-unsplash.jpg"
+                alt="Injection de résine"
+              />
+            </div>
+            <div class="service-content">
+              <h3>🚨 Urgence humidité</h3>
+              <p>J'ai besoin d'une intervention rapide.</p>
+              <a
+                class="btn btn-primary"
+                href="tel:0768841324"
+                style="margin-top: 10px; background-color: #e8531a"
+              >
+                <span style="margin-right: 5px">📞</span> Appeler maintenant
+              </a>
             </div>
           </div>
         </div>
@@ -836,6 +974,15 @@
                   />
                 </div>
               </div>
+              <div class="form-group">
+                <label for="adresse">Object</label>
+                <input
+                  type="text"
+                  name="object"
+                  id="contact-object"
+                  placeholder="Diagnostic gratuit, Devis rapide, Partenariat..."
+                />
+              </div>
 
               <div class="form-group">
                 <label for="adresse">Adresse</label>
@@ -1083,5 +1230,11 @@
 
     <!-- Scripts -->
     <script src="js/main.js"></script>
+    <script>
+      function setContactObject(val) {
+        var input = document.getElementById("contact-object");
+        if (input) input.value = val;
+      }
+    </script>
   </body>
 </html>

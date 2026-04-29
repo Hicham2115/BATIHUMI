@@ -1,3 +1,150 @@
+.hero-badges-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background: none;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.hero-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 0 24px;
+  position: relative;
+}
+.hero-badge:not(:last-child)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 44px;
+  background: #e0e3e7;
+}
+.hero-badges-link-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+.hero-badges-link {
+  font-size: 15px;
+  color: #1e3a5f;
+  font-weight: 600;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+.hero-badges-link:hover {
+  color: #e8531a;
+}
+@media (max-width: 900px) {
+  .hero-badges-list {
+    flex-wrap: wrap;
+    padding: 0;
+    justify-content: center; /* center on mobile */
+  }
+  .hero-badges-link-wrapper {
+    margin-top: 12px;
+    justify-content: center;
+  }
+}
+/* Trust strip (hero badges) styling */
+.hero-badges-strip {
+  display: flex;
+  flex-wrap: wrap;
+  background: #f8f9fa6b;
+  border-radius: 12px;
+  padding: 18px 0;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(30, 58, 95, 0.04);
+  position: relative;
+}
+.hero-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  padding: 0 24px;
+  position: relative;
+}
+.hero-badge:not(:last-child)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 44px;
+  background: #e0e3e7;
+}
+.hero-badge-icon {
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: #1e3a5f;
+}
+.hero-badge-text {
+  text-align: center;
+  line-height: 1.2;
+}
+.hero-badge-key {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1e3a5f;
+}
+.hero-badge-desc {
+  display: block;
+  font-size: 13px;
+  color: #555555;
+  font-weight: 400;
+}
+.hero-badges-link {
+  align-self: center;
+  margin-left: 24px;
+  font-size: 14px;
+  color: #1e3a5f;
+  font-weight: 600;
+  text-decoration: underline;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+.hero-badges-link:hover {
+  color: #e8531a;
+}
+@media (max-width: 900px) {
+  .hero-badges-strip {
+    flex-wrap: wrap;
+    padding: 12px 6px;
+  }
+  .hero-badge {
+    min-width: 100px;
+    padding: 0 10px;
+  }
+  .hero-badges-link {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+}
 /* ===================================
    BATIHUMI - Main Stylesheet
    Professional Humidity Treatment Website
@@ -402,8 +549,8 @@ select {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-  color: white;
-  font-weight: 600;
+  color: #f8f9fa;
+  font-weight: bold;
 }
 
 .badge i {
@@ -529,6 +676,9 @@ section {
   box-shadow: var(--shadow-sm);
   transition: var(--transition-base);
   border: 1px solid var(--gray-100);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .service-card:hover {
@@ -571,6 +721,9 @@ section {
 
 .service-content {
   padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
 }
 
 .service-content h3 {
@@ -589,6 +742,8 @@ section {
   font-size: 0.9rem;
   color: var(--gray-600);
   line-height: 1.5;
+  flex: 1 1 auto;
+  margin-bottom: 1rem;
 }
 
 /* ===================================
@@ -596,6 +751,7 @@ section {
    =================================== */
 .realisations {
   background-color: var(--gray-50);
+  align-self: flex-end;
 }
 
 .realisations-grid {
@@ -795,7 +951,6 @@ section {
   font-size: 0.85rem;
   color: var(--gray-500);
 }
-
 /* ===================================
    GARANTIES SECTION
    =================================== */
@@ -1366,10 +1521,12 @@ section {
     font-weight: 500;
   }
 
+  .hero-buttons {
+    flex-direction: column;
+  }
+
   .hero-badges {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    grid-template-columns: 1fr;
   }
 
   .hero-form-wrapper {
@@ -1577,4 +1734,15 @@ section {
   height: 18px;
   background-color: rgba(255, 255, 255, 0.4);
   margin-left: 1rem;
+}
+
+.hover-orange {
+  border: 2px solid #e8e8e8;
+  transition:
+    border-color 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-orange:hover {
+  border-color: #e8531a;
 }

@@ -246,7 +246,6 @@
       </div>
     </section>
 
-    <!-- NEW Section -->
     <section class="services" id="services">
       <div class="container">
         <div class="section-header">
@@ -347,6 +346,122 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- NEW Section -->
+    <section class="idf-coverage" id="idf-coverage">
+      <div class="container">
+        <h2 class="idf-title">
+          BATIHUMI intervient dans toute l'Île-de-France
+        </h2>
+        <p class="idf-subtitle">
+          Propriétaires à Paris, en petite ou grande couronne — nous sommes près
+          de chez vous. Délai d'intervention : 24 à 48h maximum.
+        </p>
+        <div class="idf-departements-scroll">
+          <div class="idf-departements">
+            <span class="idf-badge">75 - Paris</span>
+            <span class="idf-badge">92 - Hauts-de-Seine</span>
+            <span class="idf-badge">93 - Seine-Saint-Denis</span>
+            <span class="idf-badge">94 - Val-de-Marne</span>
+            <span class="idf-badge">91 - Essonne</span>
+            <span class="idf-badge">95 - Val-d'Oise</span>
+            <span class="idf-badge">77 - Seine-et-Marne</span>
+            <span class="idf-badge">78 - Yvelines</span>
+            <span class="idf-badge">77 - Seine-et-Marne</span>
+            <span class="idf-badge">78 - Yvelines</span>
+          </div>
+        </div>
+        <div class="idf-cities-grid">
+          <a href="#contact" class="idf-city" onclick="setContactCity('Paris')"
+            >Paris</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Boulogne-Billancourt')"
+            >Boulogne-Billancourt</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Nanterre')"
+            >Nanterre</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Saint-Denis')"
+            >Saint-Denis</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Vincennes')"
+            >Vincennes</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Versailles')"
+            >Versailles</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Créteil')"
+            >Créteil</a
+          >
+          <a href="#contact" class="idf-city" onclick="setContactCity('Évry')"
+            >Évry</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Argenteuil')"
+            >Argenteuil</a
+          >
+          <a href="#contact" class="idf-city" onclick="setContactCity('Cergy')"
+            >Cergy</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Montreuil')"
+            >Montreuil</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Vitry-sur-Seine')"
+            >Vitry-sur-Seine</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Colombes')"
+            >Colombes</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Rueil-Malmaison')"
+            >Rueil-Malmaison</a
+          >
+          <a
+            href="#contact"
+            class="idf-city"
+            onclick="setContactCity('Issy-les-Moulineaux')"
+            >Issy-les-Moulineaux</a
+          >
+        </div>
+        <div class="idf-cta-wrapper">
+          <a href="tel:0768841324" class="btn btn-primary idf-cta">
+            📞 Vérifiez la disponibilité dans votre ville — 07 68 84 13 24
+          </a>
+        </div>
+        
       </div>
     </section>
 
@@ -1234,6 +1349,10 @@
       function setContactObject(val) {
         var input = document.getElementById("contact-object");
         if (input) input.value = val;
+      }
+      function setContactCity(city) {
+        var input = document.getElementById("ville");
+        if (input) input.value = city;
       }
     </script>
   </body>

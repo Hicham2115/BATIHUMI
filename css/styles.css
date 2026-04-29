@@ -18,7 +18,9 @@
   right: 0;
   z-index: 10001;
   overflow: hidden;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .urgence-bar-text {
@@ -30,8 +32,12 @@
   text-align: center;
 }
 
-.urgence-bar-mobile { display: none; }
-.urgence-bar-desktop { display: inline; }
+.urgence-bar-mobile {
+  display: none;
+}
+.urgence-bar-desktop {
+  display: inline;
+}
 
 .urgence-bar-cta {
   color: #fff;
@@ -57,12 +63,20 @@
   justify-content: center;
 }
 
-.urgence-bar-close:hover { opacity: 1; }
+.urgence-bar-close:hover {
+  opacity: 1;
+}
 
 @media (max-width: 640px) {
-  .urgence-bar-desktop { display: none; }
-  .urgence-bar-mobile { display: inline; }
-  .urgence-bar { font-size: 0.8rem; }
+  .urgence-bar-desktop {
+    display: none;
+  }
+  .urgence-bar-mobile {
+    display: inline;
+  }
+  .urgence-bar {
+    font-size: 0.8rem;
+  }
 }
 
 /* ===================================
@@ -183,7 +197,7 @@
 
 .cta-final-subtitle {
   font-size: 1rem;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.6;
   margin-bottom: 2rem;
 }
@@ -210,7 +224,9 @@
   transition: background 0.2s;
 }
 
-.cta-final-btn-primary:hover { background: #c94310; }
+.cta-final-btn-primary:hover {
+  background: #c94310;
+}
 
 .cta-final-btn-secondary {
   background: transparent;
@@ -224,7 +240,9 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .cta-final-btn-secondary:hover {
@@ -234,7 +252,7 @@
 
 .cta-final-trust {
   font-size: 0.875rem;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: 1.75rem;
 }
 
@@ -259,15 +277,19 @@
   transition: opacity 0.2s;
 }
 
-.cta-final-whatsapp:hover { opacity: 0.9; }
+.cta-final-whatsapp:hover {
+  opacity: 0.9;
+}
 
 .cta-final-hours {
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 @media (max-width: 640px) {
-  .cta-final-title { font-size: 1.5rem; }
+  .cta-final-title {
+    font-size: 1.5rem;
+  }
 
   .cta-final-buttons {
     flex-direction: column;
@@ -281,7 +303,9 @@
     font-size: 1rem;
   }
 
-  .cta-final-trust { font-size: 0.8rem; }
+  .cta-final-trust {
+    font-size: 0.8rem;
+  }
 }
 
 /* IDF Coverage Section */
@@ -307,7 +331,7 @@
 }
 .idf-departements {
   display: flex;
- gap: 10px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
   min-width: 400px;
@@ -401,7 +425,9 @@
   overflow: hidden;
   margin-top: 28px;
   margin-bottom: 0;
-  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.22),
+    0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .hero-badges-list {
@@ -785,7 +811,9 @@ select {
   z-index: 1000;
   background-color: var(--white);
   box-shadow: var(--shadow-sm);
-  transition: top 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    top 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 body.has-urgence-bar .header {
@@ -917,8 +945,8 @@ body.has-urgence-bar .hero {
 
 .hero-content {
   display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 3rem;
+  grid-template-columns: 1fr 360px;
+  gap: 2rem;
   align-items: center;
 }
 
@@ -928,12 +956,12 @@ body.has-urgence-bar .hero {
   color: #ffffff;
   line-height: 1.15;
   margin-bottom: 1rem;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 .hero-subtitle {
   font-size: 1.15rem;
-  color: rgba(255,255,255,0.92);
+  color: rgba(255, 255, 255, 0.92);
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
@@ -1251,6 +1279,7 @@ section {
   flex-direction: column;
   align-items: center;
   flex: 0 0 auto;
+  min-width: 0;
 }
 
 .ba-label {
@@ -1965,10 +1994,13 @@ section {
   .hero-text h1 {
     font-size: 1.5rem;
   }
+  .btn.btn-diagnostic-cta {
+    font-size: 0.8rem;
+  }
 
   .hero-subtitle {
     font-size: 1rem;
-    color: #1e3a5f;
+    color: rgba(255, 255, 255, 0.92);
     margin-bottom: 1.5rem;
     font-weight: 500;
   }
@@ -2021,19 +2053,22 @@ section {
   }
 
   .before-after-pair {
-    flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
+  }
+
+  .before-after-item {
+    flex: 1 1 0;
+    min-width: 0;
   }
 
   .before-after-item img {
     width: 100%;
-    max-width: 350px;
-    height: 260px;
+    height: 200px;
   }
 
   .ba-label {
-    padding: 0.5rem 2rem;
-    font-size: 0.95rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
   }
 
   .temoignage-card {
@@ -2336,7 +2371,9 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .avis-arrow:hover {
@@ -2364,7 +2401,7 @@ section {
   border-radius: 12px;
   padding: 1.25rem;
   border: 1px solid #e8e8e8;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .temoignage-header {
@@ -2435,7 +2472,9 @@ section {
   border: none;
   background: #ccc;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 
 .avis-dot.active {
@@ -2582,6 +2621,80 @@ section {
 }
 
 /* ===================================
+   S11-C — DÉCLENCHEUR URGENCE MID-PAGE
+   =================================== */
+.urgence-mid {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d5282 100%);
+  padding: 40px 0;
+}
+
+.urgence-mid-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.urgence-mid-text {
+  flex: 1;
+}
+
+.urgence-mid-fact {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.urgence-mid-fact strong {
+  color: #e8531a;
+}
+
+.urgence-mid-sub {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.urgence-mid-cta {
+  display: inline-flex;
+  align-items: center;
+  background: #e8531a;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 16px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.2s,
+    transform 0.15s;
+  box-shadow: 0 4px 16px rgba(232, 83, 26, 0.35);
+}
+
+.urgence-mid-cta:hover {
+  background: #cf4716;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .urgence-mid-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .urgence-mid-cta {
+    width: 100%;
+    justify-content: center;
+    font-size: 1.05rem;
+    padding: 18px 24px;
+  }
+}
+
+/* ===================================
    S7 — PARTENARIAT AGENCES IMMOBILIÈRES
    =================================== */
 .agences-section {
@@ -2665,7 +2778,9 @@ section {
   border: 2px solid #fff;
   text-decoration: none;
   display: inline-block;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .agences-cta:hover {

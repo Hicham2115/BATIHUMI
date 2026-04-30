@@ -266,6 +266,24 @@ function isValidFrenchPhone(value) {
     return /^(0[1-9])(\d{8})$/.test(digits);
 }
 
+function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+}
+
+function isValidPostalCode(value) {
+    return /^\d{5}$/.test(value.trim());
+}
+
+function setFieldError(errorId, message) {
+    const el = document.getElementById(errorId);
+    if (el) el.textContent = message;
+}
+
+function clearFieldError(errorId) {
+    const el = document.getElementById(errorId);
+    if (el) el.textContent = '';
+}
+
 /**
  * Form Handling
  */
@@ -357,11 +375,71 @@ function initForms() {
         });
     });
 
-    // Contact form — standard notification
+    // Contact form — validation + standard notification
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
+        const contactFields = [
+            { id: 'nom',          errorId: 'nom-error',          validate: v => /^[a-zA-ZÀ-ÿ\s'\-]{2,}$/.test(v.trim()),  message: 'Le nom ne doit contenir que des lettres.' },
+            { id: 'prenom',       errorId: 'prenom-error',       validate: v => /^[a-zA-ZÀ-ÿ\s'\-]{2,}$/.test(v.trim()),  message: 'Le prénom ne doit contenir que des lettres.' },
+            { id: 'telephone',    errorId: 'telephone-error',    validate: v => isValidFrenchPhone(v),       message: 'Numéro invalide — format attendu : 06 ou 07 XX XX XX XX' },
+            { id: 'email',        errorId: 'email-error',        validate: v => isValidEmail(v),             message: 'Adresse e-mail invalide.' },
+            { id: 'adresse',      errorId: 'adresse-error',      validate: v => v.trim().length >= 3,        message: 'Veuillez entrer votre adresse.' },
+            { id: 'code-postal',  errorId: 'code-postal-error',  validate: v => isValidPostalCode(v),        message: 'Code postal invalide — 5 chiffres requis.' },
+            { id: 'ville',        errorId: 'ville-error',        validate: v => v.trim().length >= 2,        message: 'Veuillez entrer votre ville.' },
+            { id: 'message',      errorId: 'message-error',      validate: v => v.trim().length >= 10,       message: 'Votre message doit contenir au moins 10 caractères.' },
+        ];
+
+        // Block digit input on name fields
+        ['nom', 'prenom'].forEach(id => {
+            const input = document.getElementById(id);
+            if (!input) return;
+            input.addEventListener('keypress', e => {
+                if (/\d/.test(e.key)) e.preventDefault();
+            });
+            input.addEventListener('input', () => {
+                input.value = input.value.replace(/\d/g, '');
+            });
+        });
+
+        // Real-time blur validation
+        contactFields.forEach(({ id, errorId, validate, message }) => {
+            const input = document.getElementById(id);
+            if (!input) return;
+            input.addEventListener('blur', () => {
+                if (!validate(input.value)) {
+                    setFieldError(errorId, message);
+                } else {
+                    clearFieldError(errorId);
+                }
+            });
+            input.addEventListener('input', () => {
+                if (validate(input.value)) clearFieldError(errorId);
+            });
+        });
+
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+
+            // Run all validations
+            let firstInvalid = null;
+            let hasError = false;
+            contactFields.forEach(({ id, errorId, validate, message }) => {
+                const input = document.getElementById(id);
+                if (!input) return;
+                if (!validate(input.value)) {
+                    setFieldError(errorId, message);
+                    hasError = true;
+                    if (!firstInvalid) firstInvalid = input;
+                } else {
+                    clearFieldError(errorId);
+                }
+            });
+
+            if (hasError) {
+                firstInvalid.focus();
+                return;
+            }
+
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
@@ -375,6 +453,7 @@ function initForms() {
                 if (result.success) {
                     showNotification('Votre demande a été envoyée ! Nous vous contacterons très bientôt.', 'success');
                     contactForm.reset();
+                    contactFields.forEach(({ errorId }) => clearFieldError(errorId));
                 } else {
                     showNotification('Une erreur est survenue. Veuillez réessayer ou nous appeler.', 'error');
                 }

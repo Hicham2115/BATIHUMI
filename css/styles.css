@@ -2001,10 +2001,6 @@ section {
     grid-column: 1 / -1;
   }
 
-  .temoignage-card {
-    flex: 0 0 320px;
-  }
-
   .bloc-diagnostic-container {
     padding: 1.5rem;
   }
@@ -2134,10 +2130,6 @@ section {
     font-size: 0.85rem;
   }
 
-  .temoignage-card {
-    flex: 0 0 300px;
-  }
-
   .garanties-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -2221,10 +2213,6 @@ section {
 
   .coordonnees-grid {
     grid-template-columns: 1fr;
-  }
-
-  .temoignage-card {
-    flex: 0 0 calc(100vw - 3rem);
   }
 
   .section-header h2 {
@@ -2616,18 +2604,84 @@ section {
   }
 }
 
-@media (max-width: 639px) {
-  .temoignage-card {
-    flex: 0 0 100%;
+@media (max-width: 768px) {
+  .temoignages {
+    padding: 3rem 0 2rem;
+  }
+
+  .avis-rating-global {
+    margin-bottom: 1.75rem;
+  }
+
+  .avis-stars-row {
+    font-size: 1.6rem;
   }
 
   .avis-note {
-    font-size: 1.6rem;
+    font-size: 1.75rem;
     line-height: 1.3;
   }
 
   .avis-count {
     display: block;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+  }
+
+  .avis-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .avis-verified-badge {
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .temoignage-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .temoignage-date {
+    margin-left: 0;
+    width: 100%;
+    font-size: 0.7rem;
+  }
+
+  .temoignage-card {
+    flex: 0 0 calc(50% - 0.5rem);
+    padding: 1rem;
+  }
+
+  .temoignage-text {
+    font-size: 0.85rem;
+  }
+
+  .avis-cta-row {
+    gap: 0.75rem;
+  }
+
+  .avis-cta-google,
+  .avis-cta-call {
+    text-align: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .temoignage-card {
+    flex: 0 0 calc(100vw - 2rem);
+  }
+
+  .avis-note {
+    font-size: 1.6rem;
+  }
+
+  .avis-count {
     font-size: 0.9rem;
     margin-top: 0.25rem;
   }
@@ -2648,6 +2702,16 @@ section {
     gap: 0;
   }
 
+  .temoignage-header {
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+
+  .temoignage-date {
+    margin-left: auto;
+    width: auto;
+  }
+
   .avis-cta-row {
     flex-direction: column;
     align-items: stretch;
@@ -2656,6 +2720,7 @@ section {
   .avis-cta-google,
   .avis-cta-call {
     text-align: center;
+    width: 100%;
   }
 }
 
@@ -2970,6 +3035,150 @@ section {
 }
 .mb-3 {
   margin-bottom: var(--spacing-xl);
+}
+
+/* ===================================
+   BLOC DIAGNOSTIC IMMOBILIER
+   =================================== */
+.bloc-diagnostic-immobilier {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2a5298 100%);
+  border-radius: 16px;
+  margin: 3rem 0 0;
+  overflow: hidden;
+}
+
+.bloc-diagnostic-container {
+  padding: 2.5rem;
+}
+
+.bloc-diagnostic-left {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bloc-diagnostic-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.bloc-diagnostic-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.bloc-diagnostic-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.bloc-diagnostic-list li {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  flex-wrap: wrap;
+}
+
+.bloc-diagnostic-list li strong {
+  color: #fff;
+}
+
+.badge-48h {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.btn-diagnostic-cta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #e8531a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+  line-height: 1.4;
+}
+
+.btn-diagnostic-cta:hover {
+  background: #cf4715;
+  color: #fff;
+}
+
+.cta-gratuit {
+  font-size: 0.78rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .bloc-diagnostic-immobilier {
+    border-radius: 10px;
+    margin: 2rem 0 0;
+  }
+
+  .bloc-diagnostic-container {
+    padding: 1.25rem;
+  }
+
+  .bloc-diagnostic-title {
+    font-size: 1.15rem;
+  }
+
+  .bloc-diagnostic-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .bloc-diagnostic-list li {
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+
+  .badge-48h {
+    margin-top: 4px;
+  }
+
+  .btn-diagnostic-cta {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.85rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bloc-diagnostic-title {
+    font-size: 1rem;
+  }
+
+  .bloc-diagnostic-subtitle {
+    font-size: 0.85rem;
+  }
 }
 
 /* Print Styles */

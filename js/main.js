@@ -168,7 +168,9 @@ function initInfiniteCarousel() {
 
     function goTo(index) {
         current = Math.max(0, Math.min(index, totalSlides() - 1));
-        const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(cards[0]).marginRight || 0);
+        const trackStyle = getComputedStyle(track);
+        const gap = parseFloat(trackStyle.columnGap) || parseFloat(trackStyle.gap) || 0;
+        const cardWidth = cards[0].offsetWidth + gap;
         track.style.transform = `translateX(-${current * cardWidth}px)`;
         updateDots();
     }
